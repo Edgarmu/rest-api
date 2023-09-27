@@ -11,7 +11,7 @@ import (
 
 const (
 	salt       = "fdshnjskcds1234567avfmnijdkls"
-	signingKey = "qrkjk#4#%35FSFJlja#4353KSFjH"
+	signingKey = "5FSF#4353KSFjH"
 	tokenTTL   = 12 * time.Hour
 )
 
@@ -37,7 +37,7 @@ func (s *AuthService) GenerateToken(username, password string) (string, error) {
 	if err != nil {
 		return "", err
 	}
-	token := jwt.NewWithClaims(jwt.SigningMethodES256, tokenClaims{
+	token := jwt.NewWithClaims(jwt.SigningMethodHS256, tokenClaims{
 		jwt.StandardClaims{
 			ExpiresAt: time.Now().Add(tokenTTL).Unix(),
 			IssuedAt:  time.Now().Unix(),
